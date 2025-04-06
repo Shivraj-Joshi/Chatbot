@@ -160,6 +160,10 @@ function App() {
                 )}
               </div>
             </>
+          ) : loading ? (
+            <div className="bg-[#181818] text-white rounded-md p-2 mb-4 animate-pulse">
+              AssistGPT is typing...
+            </div>
           ) : (
             <>
               <div className="bg-transparent text-3xl ">
