@@ -16,10 +16,12 @@ function App() {
   const [userPrompt, setUserPrompt] = useState("");
   const [messages, setMessages] = useState("");
   const [darkMode, setDarkMode] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   // function to get response from gemini API
   async function getResponse() {
-    console.log("loading....");
+    setLoading(true);
+    // console.log("loading....");
     try {
       const currentPrompt = prompt;
       const response = await fetch(
@@ -64,6 +66,8 @@ function App() {
       setPrompt(""); // clearing the input
     } catch (error) {
       console.log("error:", error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -130,6 +134,11 @@ function App() {
                     </div>
                   </div>
                 ))}
+                {loading && (
+                  <div className="bg-[#181818] text-white rounded-md p-2 mb-4 animate-pulse">
+                    AssistGPT is typing...
+                  </div>
+                )}
               </div>
             </>
           ) : (
